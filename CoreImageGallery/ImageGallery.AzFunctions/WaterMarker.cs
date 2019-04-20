@@ -14,7 +14,7 @@ namespace Watermarker
             using (Image inputImage = Image.FromStream(originalImageStrm, true))
             using (Graphics graphic = Graphics.FromImage(inputImage))
             {
-                Font font = new Font("Georgia", 12, FontStyle.Bold);
+                Font font = new Font("Georgia", 24, FontStyle.Bold);
                 SizeF textSize = graphic.MeasureString(watermarkContent, font);
 
                 float xPostFromLeft = textSize.Width/2 + 10;
@@ -43,6 +43,7 @@ namespace Watermarker
                 inputImage.Save(tempStrm, inputImage.RawFormat);
                 tempStrm.Seek(0, SeekOrigin.Begin);
                 tempStrm.CopyTo(newImageStrm);
+                newImageStrm.Seek(0, SeekOrigin.Begin); //added so that newImage position begins back at 0
             }
         }
     }
