@@ -24,7 +24,7 @@ namespace ImageGallery.Worker
         private CloudBlobContainer _publicContainer;
         public Worker(ILogger<Worker> logger, IConfiguration config)
         {
-            _connectionString = config.GetValue<string>("ConnectionStrings:DefaultConnection");
+            _connectionString = config.GetValue<string>("AzureStorageConnection");
             _account = CloudStorageAccount.Parse(_connectionString);
             _client = _account.CreateCloudBlobClient();
             _uploadContainer = _client.GetContainerReference(Config.UploadContainer);
